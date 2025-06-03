@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deposit | Monarch FX Capital</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background-color: #0d1117; color: white;">
+
+  <!-- Header -->
+  <header style="background-color: #121926; padding: 20px; text-align: center;">
+    <h1 style="margin: 0; color: #f0c040;">Make a Deposit</h1>
+  </header>
+
+  <!-- Deposit Form Container -->
+  <div style="max-width: 600px; margin: 40px auto; background-color: #1a1f2e; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px #000;">
+
+    <!-- Select Crypto -->
+    <label for="crypto" style="display: block; margin-bottom: 10px;">Choose a cryptocurrency to deposit with:</label>
+    <select id="crypto" onchange="updateAddress()" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: none;">
+      <option value="btc">Bitcoin (BTC)</option>
+      <option value="pi">Pi Network (PI)</option>
+      <option value="usdt">USDT (TRC20)</option>
+      <option value="eth">Ethereum (ERC20)</option>
+    </select>
+
+    <!-- Wallet Address Display -->
+    <div id="walletDisplay" style="background-color: #0d1117; padding: 20px; border-radius: 5px; margin-bottom: 15px;">
+      <p style="margin: 0 0 10px;">Send to the following address:</p>
+      <input id="walletAddress" readonly style="width: 100%; padding: 10px; border: none; background-color: #2a2f45; color: #fff; border-radius: 5px;" />
+      <button onclick="copyAddress()" style="margin-top: 10px; padding: 10px; background-color: #f0c040; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Copy Address</button>
+    </div>
+
+    <!-- Amount to Deposit -->
+    <label for="amount" style="display: block; margin-top: 20px;">Amount to Deposit ($):</label>
+    <input id="amount" type="number" placeholder="e.g. 1000" style="width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; background-color: #2a2f45; color: white;" />
+
+    <!-- "I Have Paid" Button -->
+    <button onclick="confirmPayment()" id="confirmBtn" style="margin-top: 25px; padding: 12px; background-color: #f0c040; border: none; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer;">
+      I Have Paid
+    </button>
+
+    <!-- Loader + Message -->
+    <div id="statusMessage" style="text-align: center; margin-top: 20px; display: none;">
+      <div id="loader" style="border: 4px solid #f3f3f3; border-top: 4px solid #f0c040; border-radius: 50%; width: 40px; height: 40px; animation: spin 2s linear infinite; margin: 0 auto;"></div>
+      <p id="paymentText" style="margin-top: 10px;">Checking payment...</p>
+    </div>
+
+    <!-- Back to Dashboard -->
+    <a href="dashboard_monarchfx.html" style="display: inline-block; margin-top: 30px; color: #f0c040; text-decoration: none;">← Back to Dashboard</a>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background-color: #121926; padding: 20px; text-align: center; font-size: 14px; color: #999;">
+    &copy; 2025 Monarch FX Capital. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const addresses = {
+      btc: "3BfoU2qv6ytuAb6XFQGxwUBUJETaV75hEi",
+      pi: "MDJYPX7HSZ5XZYNBJIWV6KCVV6RGMCDUBH3FTJL22TOGPNFQI6LN2AAAAAAAACYE4UUN4",
+      usdt: "TB4YyUMmFV8NK1GqZyWkENNPAkPbDf7sCv",
+      eth: "0x272691b6300a719fd1d8e7524f4c28fade078243"
+    };
+
+    function updateAddress() {
+      const selected = document.getElementById("crypto").value;
+      document.getElementById("walletAddress").value = addresses[selected];
+    }
+
+    function copyAddress() {
+      const walletInput = document.getElementById("walletAddress");
+      walletInput.select();
+      walletInput.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Address copied to clipboard!");
+    }
+
+    function confirmPayment() {
+      document.getElementById("statusMessage").style.display = "block";
+      document.getElementById("confirmBtn").disabled = true;
+
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("paymentText").textContent = "Payment not confirmed";
+        document.getElementById("confirmBtn").disabled = false;
+      }, 10000);
+    }
+
+    // Initial address
+    window.onload = updateAddress;
+  </script>
+
+  <!-- CSS Spinner -->
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+  </style>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monarch FX Capital Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0d1117;
+      color: white;
+    }
+    header {
+      background-color: #161b22;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    header a {
+      color: #f0c040;
+      text-decoration: none;
+      margin-right: 15px;
+      white-space: nowrap;
+    }
+    header a:last-child {
+      margin-right: 0;
+    }
+    .account-balance {
+      color: #f0c040;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    main {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 150px);
+      gap: 20px;
+    }
+    .grid-box {
+      background-color: #161b22;
+      border: 1px solid #f0c040;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      text-align: center;
+      padding: 15px;
+    }
+    .grid-box h4 {
+      margin: 0 0 10px 0;
+      color: #f0c040;
+    }
+    @media (max-width: 700px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+    }
+    @media (max-width: 400px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 12px;
+      }
+      header a {
+        margin-right: 10px;
+        margin-bottom: 5px;
+      }
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="deposit.html">Deposit</a>
+    <a href="withdraw.html">Withdraw</a>
+    <a href="referral.html">Referral</a>
+    <div class="account-balance">Account Balance: $0</div>
+  </header>
+
+  <main>
+    <div class="grid-box">
+      <h4>Total Withdrawals Per Month</h4>
+      <p id="withdrawals">$0</p>
+    </div>
+    <div class="grid-box">
+      <h4>Total Registered Users Per Day</h4>
+      <p id="registeredUsers">0</p>
+    </div>
+    <div class="grid-box">
+      <h4>Total Deposits Today</h4>
+      <p id="deposits">$0</p>
+    </div>
+    <div class="grid-box">
+      <h4>Total Traders</h4>
+      <p id="activeTraders">0</p>
+    </div>
+    <div class="grid-box">
+      <h4>Pending Withdrawals</h4>
+      <p id="pendingWithdrawals">$0</p>
+    </div>
+    <div class="grid-box">
+      <h4>Total Referral Bonuses</h4>
+      <p id="referralBonuses">$0</p>
+    </div>
+  </main>
+
+  <script>
+const metrics = {
+  withdrawals:        { start: 0, max: 9000000000000, increment: 1000, isMoney: true },
+  registeredUsers:    { start: 0, max: 200000,  increment: 5,  isMoney: false },
+  deposits:           { start: 0, max: 3000000, increment: 1000,  isMoney: true },
+  activeTraders:      { start: 0, max: 80000,   increment: 20,  isMoney: false },
+  pendingWithdrawals: { start: 0, max: 1500000, increment: 1,  isMoney: true },
+  referralBonuses:    { start: 0, max: 2000000, increment: 1,  isMoney: true },
+};
+
+let currentValues = {};
+
+function getStoredValue(id) {
+  const stored = localStorage.getItem(id);
+  return stored ? parseInt(stored) : metrics[id].start;
+}
+
+function saveStoredValue(id, value) {
+  localStorage.setItem(id, value);
+}
+
+function animateCount(id, start, end, isMoney, duration) {
+  const element = document.getElementById(id);
+  let startTime = null;
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = timestamp - startTime;
+    const rate = Math.min(progress / duration, 1);
+    const current = Math.floor(start + (end - start) * rate);
+    element.textContent = isMoney ? `$${current.toLocaleString()}` : current.toLocaleString();
+    if (rate < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function animateAllOnLoad() {
+  for (const key in metrics) {
+    const val = getStoredValue(key);
+    currentValues[key] = val;
+    animateCount(key, 0, val, metrics[key].isMoney, 1200);
+  }
+}
+
+function incrementAll() {
+  for (const key in metrics) {
+    const { max, increment, isMoney } = metrics[key];
+    let oldVal = currentValues[key];
+    let newVal = Math.min(oldVal + increment, max);
+    animateCount(key, oldVal, newVal, isMoney, 1000);
+    currentValues[key] = newVal;
+    saveStoredValue(key, newVal);
+  }
+}
+
+animateAllOnLoad();
+setInterval(incrementAll, 20000);
+</script><br>
+
+
+
+
+
+
+
+
+
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 40px; background-color: #0d1117; color: white;">
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Starter Boost</h3>
+    <p>Invest: $500 - $999</p>
+    <p>Return: $750</p>
+    <p>Withdraw in: 7 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Silver Core</h3>
+    <p>Invest: $1,000 - $2,999</p>
+    <p>Return: $1,600</p>
+    <p>Withdraw in: 10 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Gold Rise</h3>
+    <p>Invest: $3,000 - $4,999</p>
+    <p>Return: $4,800</p>
+    <p>Withdraw in: 14 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Pro Trader</h3>
+    <p>Invest: $5,000 - $6,999</p>
+    <p>Return: $8,000</p>
+    <p>Withdraw in: 21 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Titan Plan</h3>
+    <p>Invest: $7,000 - $9,999</p>
+    <p>Return: $11,500</p>
+    <p>Withdraw in: 28 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Platinum Surge</h3>
+    <p>Invest: $10,000 - $14,999</p>
+    <p>Return: $18,000</p>
+    <p>Withdraw in: 30 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Elite Pro</h3>
+    <p>Invest: $15,000 - $19,999</p>
+    <p>Return: $27,500</p>
+    <p>Withdraw in: 45 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">FX Premium</h3>
+    <p>Invest: $20,000 - $24,999</p>
+    <p>Return: $36,000</p>
+    <p>Withdraw in: 60 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Crypto Boost</h3>
+    <p>Invest: $25,000 - $29,999</p>
+    <p>Return: $42,500</p>
+    <p>Withdraw in: 70 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Legacy Plan</h3>
+    <p>Invest: $30,000 - $49,999</p>
+    <p>Return: $65,000</p>
+    <p>Withdraw in: 90 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Diamond Max</h3>
+    <p>Invest: $50,000 - $74,999</p>
+    <p>Return: $100,000</p>
+    <p>Withdraw in: 120 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+  <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #f0c040;">Monarch Executive</h3>
+    <p>Invest: $75,000 - $100,000</p>
+    <p>Return: $160,000</p>
+    <p>Withdraw in: 150 days</p>
+    <button onclick="alert('Please kindly make a deposit and try again.')" style="margin-top: 10px; padding: 8px 16px; background-color: #f0c040; color: #000; border: none; border-radius: 5px; cursor: pointer;">Make your choice</button>
+  </div>
+
+</div><br><br>
+
+
+
+<footer style="background-color: #0d1117; color: white; padding: 40px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-family: Arial, sans-serif;">
+
+  <div style="flex: 1 1 200px;">
+    <h3 style="color: #f0c040;">Contact Us</h3>
+    <p>Email: <a href="mailto:monarchfaxcapital@gmail.com" style="color: #f0c040; text-decoration: none;">monarchfaxcapital@gmail.com</a></p>
+    <p>Facebook: <a href="https://facebook.com/MonarchFxCapitol" target="_blank" style="color: #f0c040; text-decoration: none;">Monarch Fx Capitol</a></p>
+  </div>
+
+  <div style="flex: 1 1 200px;">
+    <h3 style="color: #f0c040;">Quick Links</h3>
+    <ul style="list-style: none; padding: 0;">
+      <li><a href="#" style="color: white; text-decoration: none;">Home</a></li>
+      <li><a href="#" style="color: white; text-decoration: none;">Investment Plans</a></li>
+      <li><a href="#" style="color: white; text-decoration: none;">Login</a></li>
+      <li><a href="#" style="color: white; text-decoration: none;">Register</a></li>
+    </ul>
+  </div>
+
+  <div style="flex: 1 1 200px;">
+    <h3 style="color: #f0c040;">Governing Authorities</h3>
+    <ul style="list-style: none; padding: 0;">
+      <li>SEC – U.S. Securities and Exchange Commission</li>
+      <li>FCA – Financial Conduct Authority (UK)</li>
+      <li>CySEC – Cyprus Securities and Exchange Commission</li>
+      <li>FINRA – Financial Industry Regulatory Authority</li>
+      <li>ASIC – Australian Securities & Investments Commission</li>
+    </ul>
+  </div>
+
+  <div style="flex: 1 1 100%; text-align: center; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+    <p style="color: #aaa;">&copy; 2025 Monarch FX Capital. All rights reserved.</p>
+  </div>
+
+</footer>
+
+
+
+</body>
+</html>

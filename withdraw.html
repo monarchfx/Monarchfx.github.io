@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw | Monarch FX Capital</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; background-color: #0d1117; color: white;">
+
+  <header style="background-color: #121926; padding: 20px; text-align: center;">
+    <h1 style="margin: 0; color: #f0c040;">Withdraw Funds</h1>
+  </header>
+
+  <div style="max-width: 600px; margin: 30px auto; padding: 20px; background-color: #1a1f2e; border-radius: 10px;">
+    <label for="withdrawType" style="display: block; margin-bottom: 10px;">Choose Withdrawal Method:</label>
+    <select id="withdrawType" onchange="showForm()" style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-bottom: 20px;">
+      <option value="bank">Direct Bank Transfer</option>
+      <option value="crypto">Cryptocurrency</option>
+      <option value="giftcard">Gift Cards</option>
+    </select>
+
+    <!-- Bank Transfer Form -->
+    <div id="bankForm" class="form-section">
+      <h3>Direct Bank Transfer</h3>
+      <input type="text" placeholder="Full Name" style="margin-bottom: 10px;" class="input" />
+      <input type="text" placeholder="Bank Name" style="margin-bottom: 10px;" class="input" />
+      <input type="text" placeholder="Account Number" style="margin-bottom: 10px;" class="input" />
+      <input type="number" placeholder="Amount to Withdraw ($)" class="input" />
+      <button class="btn">Withdraw Now</button>
+    </div>
+
+    <!-- Crypto Form -->
+    <div id="cryptoForm" class="form-section" style="display: none;">
+      <h3>Withdraw with Cryptocurrency</h3>
+      <select style="margin-bottom: 10px;" class="input">
+        <option>Bitcoin (BTC)</option>
+        <option>Ethereum (ETH)</option>
+        <option>USDT (TRC20)</option>
+        <option>Pi Network (PI)</option>
+      </select>
+      <input type="text" placeholder="Wallet Address" style="margin-bottom: 10px;" class="input" />
+      <input type="number" placeholder="Amount to Withdraw ($)" class="input" />
+      <button class="btn">Withdraw Now</button>
+    </div>
+
+    <!-- Gift Card Form -->
+    <div id="giftcardForm" class="form-section" style="display: none;">
+      <h3>Withdraw with Gift Cards</h3>
+      <select style="margin-bottom: 10px;" class="input">
+        <option>Amazon</option>
+        <option>Steam</option>
+        <option>Google Play</option>
+        <option>iTunes</option>
+      </select>
+      <input type="text" placeholder="Email Address to Send Card" style="margin-bottom: 10px;" class="input" />
+      <input type="number" placeholder="Amount to Withdraw ($)" class="input" />
+      <button class="btn">Withdraw Now</button>
+    </div>
+
+    <a href="dashboard_monarchfx.html" style="display: block; margin-top: 20px; text-align: center; color: #f0c040; text-decoration: none;">← Back to Dashboard</a>
+  </div>
+
+  <footer style="background-color: #121926; padding: 20px; text-align: center; font-size: 14px; color: #999;">
+    &copy; 2025 Monarch FX Capital. All rights reserved.
+  </footer>
+
+  <!-- Styles -->
+  <style>
+    .form-section {
+      margin-top: 20px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #2a2f45;
+      color: white;
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      background-color: #f0c040;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #e0b030;
+    }
+  </style>
+
+  <!-- Script -->
+  <script>
+    function showForm() {
+      const type = document.getElementById('withdrawType').value;
+      document.getElementById('bankForm').style.display = 'none';
+      document.getElementById('cryptoForm').style.display = 'none';
+      document.getElementById('giftcardForm').style.display = 'none';
+
+      if (type === 'bank') {
+        document.getElementById('bankForm').style.display = 'block';
+      } else if (type === 'crypto') {
+        document.getElementById('cryptoForm').style.display = 'block';
+      } else if (type === 'giftcard') {
+        document.getElementById('giftcardForm').style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>
