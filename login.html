@@ -46,37 +46,24 @@
   </div>
 
   <script>
-    const loginForm = document.getElementById('loginForm');
+  const loginForm = document.getElementById('loginForm');
 
-    loginForm.addEventListener('submit', function(event) {
-      event.preventDefault();
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-      const inputUsername = document.getElementById('username').value.trim();
-      const inputPassword = document.getElementById('password').value;
+    const inputUsername = document.getElementById('username').value.trim();
+    const inputPassword = document.getElementById('password').value;
 
-      if (!inputUsername || !inputPassword) {
-        alert('Please enter both username and password.');
-        return;
-      }
+    if (!inputUsername || !inputPassword) {
+      alert('Please enter both username and password.');
+      return;
+    }
 
-      // Retrieve stored credentials from localStorage
-      const storedUsername = localStorage.getItem('username');
-      const storedPassword = localStorage.getItem('password');
-
-      if (!storedUsername || !storedPassword) {
-        alert('No registered user found. Please register first.');
-        window.location.href = 'register.html';
-        return;
-      }
-
-      if (inputUsername === storedUsername && inputPassword === storedPassword) {
-        alert('Login successful! Redirecting to dashboard...');
-        window.location.href = 'dashboard_monarchfx.html';
-      } else {
-        alert('Invalid username or password. Please try again.');
-      }
-    });
-  </script>
+    // Always allow login (skip stored credential checks)
+    alert('Login successful! Redirecting to dashboard...');
+    window.location.href = 'dashboard_monarchfx.html';
+  });
+</script>
 
 </body>
 </html>
