@@ -1,129 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Monarch FX Capital</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    @keyframes fade {
-      0%, 100% { opacity: 0; }
-      20%, 80% { opacity: 1; }
-    }
+    @keyframes fade { 0%,100%{opacity:0;} 20%,80%{opacity:1;} }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body style="margin: 0; font-family: Arial, sans-serif; background-color: #0d1117; color: white;">
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: #0c0f15; color: white; overflow-x: hidden;">
 
   <!-- Header -->
-  <div style="background-color: #161b22; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
-    <h1 style="margin: 0; font-size: 28px; color: #f0c040;">Monarch FX Capital</h1>
+  <div style="background: #11161d; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+    <h1 style="margin: 0; font-size: 26px; color: #f0c040;">Monarch FX Capital</h1>
     <div>
-      <a href="#plans" style="color: white; margin-right: 20px; text-decoration: none;">Investment Plans</a>
-      <a href="login.html" style="color: white; margin-right: 20px; text-decoration: none;">Login</a>
-      <a href="register.html" style="color: white; text-decoration: none;">Register</a>
+      <a href="#plans" style="color: #ccc; margin-right: 20px; text-decoration: none; transition: 0.3s;">Investment Plans</a>
+      <a href="login.html" style="color: #ccc; margin-right: 20px; text-decoration: none; transition: 0.3s;">Login</a>
+      <a href="register.html" style="color: #f0c040; text-decoration: none; font-weight: bold;">Register</a>
     </div>
   </div>
 
   <!-- Hero Section -->
-  <div style="padding: 60px 20px; text-align: center; background-image: linear-gradient(#0d1117, #161b22);">
-    <h2 style="font-size: 36px; margin-bottom: 10px;">Secure Your Future with Monarch FX Capital</h2>
-    <p style="font-size: 18px; max-width: 600px; margin: 0 auto 30px;">
-      Forex & Crypto Investment solutions tailored for growth. Transparent, reliable, and high-return strategies for smart investors like you.
+  <div style="padding: 80px 20px; text-align: center; background: radial-gradient(ellipse at center, #1e242f 0%, #0c0f15 100%); animation: slideUp 1.5s ease;">
+    <h2 style="font-size: 38px; margin-bottom: 20px; color: #f0c040;">Invest Boldly. Earn Smartly.</h2>
+    <p style="font-size: 18px; color: #ccc; max-width: 700px; margin: 0 auto 30px;">
+      Premium crypto & forex investment solutions for global investors. Fast returns, full transparency.
     </p>
-    <a href="login.html" style="background-color: #f0c040; padding: 10px 20px; color: black; text-decoration: none; border-radius: 6px; margin-right: 10px;">Login</a>
-    <a href="register.html" style="border: 1px solid #f0c040; padding: 10px 20px; color: #f0c040; text-decoration: none; border-radius: 6px;">Register</a>
+    <a href="login.html" style="background-color: #f0c040; padding: 12px 24px; color: #000; text-decoration: none; border-radius: 8px; margin-right: 10px; font-weight: bold;">Login</a>
+    <a href="register.html" style="border: 2px solid #f0c040; padding: 12px 24px; color: #f0c040; text-decoration: none; border-radius: 8px; font-weight: bold;">Register</a>
   </div>
 
-  <!-- About Section -->
-  <div id="about" style="padding: 50px 20px; text-align: center;">
-    <h3 style="font-size: 28px; margin-bottom: 10px;">About Monarch FX Capital</h3>
-    <p style="max-width: 700px; margin: 0 auto; font-size: 17px;">
-      At Monarch FX Capital, we specialize in smart investment strategies using Forex and cryptocurrencies. Our mission is to help individuals grow their wealth with low risk, expert insights, and maximum returns.
+  <!-- About -->
+  <div id="about" style="padding: 60px 20px; text-align: center; animation: slideUp 1.5s ease;">
+    <h3 style="font-size: 28px; color: #f0c040;">About Monarch FX Capital</h3>
+    <p style="max-width: 750px; margin: auto; color: #bbb; font-size: 16px;">
+      Monarch FX Capital delivers cutting-edge financial strategies through crypto and forex markets. Our mission is to secure your future with transparency and consistent profits.
     </p>
   </div>
 
-<!-- Investment Plans -->
-<div id="plans" style="padding: 50px 20px; text-align: center;">
-  <h3 style="font-size: 28px;">Investment Plans</h3>
-  <div style="max-width: 800px; margin: auto; display: grid; gap: 20px;">
-    <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
-      <h4 style="color: #f0c040;">Starter Plan</h4>
-      <p>Invest $500 - $1,000</p>
-      <p>Return: $575 - $1,150 in 7 days</p>
-    </div>
-    <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
-      <h4 style="color: #f0c040;">Silver Plan</h4>
-      <p>Invest $1,001 - $5,000</p>
-      <p>Return: $1,401 - $7,000 in 14 days</p>
-    </div>
-    <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
-      <h4 style="color: #f0c040;">Gold Plan</h4>
-      <p>Invest $5,001 - $10,000</p>
-      <p>Return: $9,000 - $18,000 in 30 days</p>
-    </div>
-    <div style="border: 1px solid #f0c040; padding: 20px; border-radius: 10px;">
-      <h4 style="color: #f0c040;">Monarch Elite</h4>
-      <p>Invest $10,001+</p>
-      <p>Return: $25,000+ in 60 days</p>
+  <!-- Plans -->
+  <div id="plans" style="padding: 60px 20px; text-align: center;">
+    <h3 style="font-size: 28px; color: #f0c040; margin-bottom: 30px;">Investment Plans</h3>
+    <div style="display: grid; gap: 20px; max-width: 1000px; margin: auto;">
+      <div style="padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid #f0c040;">
+        <h4 style="color: #f0c040;">Starter Plan</h4>
+        <p>Invest $500 - $1,000</p>
+        <p>Return: $575 - $1,150 in 7 days</p>
+      </div>
+      <div style="padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid #f0c040;">
+        <h4 style="color: #f0c040;">Silver Plan</h4>
+        <p>Invest $1,001 - $5,000</p>
+        <p>Return: $1,401 - $7,000 in 14 days</p>
+      </div>
+      <div style="padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid #f0c040;">
+        <h4 style="color: #f0c040;">Gold Plan</h4>
+        <p>Invest $5,001 - $10,000</p>
+        <p>Return: $9,000 - $18,000 in 30 days</p>
+      </div>
+      <div style="padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid #f0c040;">
+        <h4 style="color: #f0c040;">Monarch Elite</h4>
+        <p>Invest $10,001+</p>
+        <p>Return: $25,000+ in 60 days</p>
+      </div>
     </div>
   </div>
-</div>
 
-<br>
-<!-- Testimonials -->
-<div id="testimonials" style="padding: 50px 20px; background-color: #161b22; text-align: center;">
-  <h3 style="font-size: 28px; margin-bottom: 30px;">What Our Investors Say</h3>
-  
-  <div id="testimonialBox" style="font-size: 18px; max-width: 700px; margin: auto; animation: fade 6s infinite;">
-    <p>"I started with $1,000 and got $1,400 in just 7 days. Monarch FX Capital is the real deal!"</p>
-    <p>- Sarah D., Texas</p>
+  <!-- Testimonials -->
+  <div style="background: #11161d; padding: 60px 20px; text-align: center;">
+    <h3 style="font-size: 28px; color: #f0c040; margin-bottom: 30px;">What Investors Say</h3>
+    <div id="testimonialBox" style="max-width: 800px; margin: auto; font-size: 18px; color: #ccc; animation: fade 6s infinite;"></div>
   </div>
-</div>
 
-<script>
-  const testimonials = [
-    `"I started with $1,000 and got $1,400 in just 7 days. Monarch FX Capital is the real deal!" - Sarah D., Texas`,
-    `"Excellent service and fast payouts. I turned $2,000 into $2,800 within two weeks!" - John M., New York`,
-    `"Trusted team and great ROI. Invested $5,000 and received $9,000 in a month!" - Amanda C., Florida`,
-    `"As a beginner, I was nervous, but Monarch guided me step-by-step. Earned $12,500 from $10,000!" - Michael R., California`,
-    `"Absolutely impressive! My $10,000 turned into $25,000 in 60 days." - Emily S., Washington`,
-    `"This is the best investment platform I’ve used. I made $6,000 from $3,000!" - William H., Chicago`
-  ];
+  <script>
+    const testimonials = [
+      `"I started with $1,000 and got $1,400 in just 7 days. Monarch FX Capital is the real deal!" - Sarah D., Texas`,
+      `"Excellent service and fast payouts. I turned $2,000 into $2,800 within two weeks!" - John M., NY`,
+      `"Trusted team and great ROI. Invested $5,000 and received $9,000 in a month!" - Amanda C., FL`,
+      `"As a beginner, I was nervous, but Monarch guided me step-by-step. Earned $12,500!" - Michael R., CA`,
+      `"Absolutely impressive! My $10k became $25k in 60 days." - Emily S., WA`,
+      `"This is the best investment platform I’ve used. Made $6,000 from $3,000!" - William H., Chicago`
+    ];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById('testimonialBox').innerHTML = `<p>${testimonials[i]}</p>`;
+      i = (i + 1) % testimonials.length;
+    }, 6000);
+  </script>
 
-  let i = 0;
-  setInterval(() => {
-    document.getElementById('testimonialBox').innerHTML = `<p>${testimonials[i]}</p>`;
-    i = (i + 1) % testimonials.length;
-  }, 6000);
-</script><br>
+  <!-- Footer -->
+  <div style="padding: 40px 20px; background-color: #0c0f15; text-align: center; border-top: 1px solid #2a2f3a;">
+    <p style="font-size: 16px; color: #bbb;">Empowering investors with intelligent, secure forex & crypto strategies.</p>
+    <p style="font-size: 14px; color: #666;">&copy; 2025 Monarch FX Capital. All rights reserved.</p>
+  </div>
 
-
-<!-- Footer -->
-<div style="background-color: #0d1117; color: #aaa; text-align: center; padding: 40px 20px; border-top: 1px solid #2a2f3a;">
-  <p style="font-size: 16px; max-width: 700px; margin: 0 auto 15px; line-height: 1.6;">
-    Monarch FX Capital is committed to empowering investors through secure, intelligent financial strategies in Forex and crypto markets.
-  </p>
-  <p style="font-size: 14px; color: #666; margin-top: 10px;">
-    &copy; 2025 Monarch FX Capital. All rights reserved.
-  </p>
-</div>
-
-
-
-
-<!-- Centered Popup Box -->
-<div id="popupBox" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; color: #000; padding: 25px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.3); z-index: 9999; width: 90%; max-width: 400px; text-align: center;">
-  <span onclick="document.getElementById('popupBox').style.display='none'" style="position: absolute; top: 10px; right: 15px; cursor: pointer; color: red; font-weight: bold; font-size: 22px;">&times;</span>
-  <p style="font-size: 17px; font-weight: bold;">
-    Highly powered by <span style="color: #0070f3;">GITHUB</span><br>
-    and supported by <span style="color: #24292e;">GITHUB.IO</span>
-  </p>
-  <p style="margin-top: 10px; font-size: 15px; color: #333;">
-    You can invest with confidence and high security.
-  </p>
-</div>
-
-
-
+  <!-- Popup Box -->
+  <div id="popupBox" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; color: #000; padding: 25px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.3); z-index: 9999; width: 90%; max-width: 400px; text-align: center;">
+    <span onclick="document.getElementById('popupBox').style.display='none'" style="position: absolute; top: 10px; right: 15px; cursor: pointer; color: red; font-weight: bold; font-size: 22px;">&times;</span>
+    <p style="font-size: 17px; font-weight: bold;">
+      Powered by <span style="color: #0070f3;">GITHUB</span><br>
+      and secured by <span style="color: #24292e;">GITHUB.IO</span>
+    </p>
+    <p style="margin-top: 10px; font-size: 15px;">Invest with full confidence and military-grade security.</p>
+  </div>
 
 </body>
 </html>
